@@ -10,16 +10,20 @@ HOST = 'localhost:8000'
 def post_new_message(text, username, password):
     resp = requests.post(
         'http://{}/message'.format(HOST),
-        json.dumps({'text': text, 'username': username}))
+        json.dumps({'text': text}),
+        headers={'X-Username': username,
+                 'X-Password': password})
     if resp.status_code == 200:
         print 'OK'
     else:
         print 'ERROR'
         print resp.content
 
-def read_messages():
+def read_messages(username, password):
     resp = requests.get(
-        'http://{}/message'.format(HOST))
+        'http://{}/message'.format(HOST),
+        headers={'X-Username': username,
+                 'X-Password': password})
     if resp.status_code == 200:
         messages = json.loads(resp.content)
         print 'Messages:'
@@ -46,7 +50,6 @@ if args.command == 'post':
     post_new_message(args.message, username=args.user,
                      password=args.password)
 elif args.command == 'read':
-    read_messages()
+    read_messages(args.user, args.password)
 else:
     print 'Errore'
-    
