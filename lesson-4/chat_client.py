@@ -2,11 +2,12 @@ import requests
 import sys
 import json
 
-HOST = '158.110.47.12:8000'
+HOST = 'localhost:8000'
 
+# http://python-requests.org/
 
 # post new message
-def post_new_message(text, username):
+def post_new_message(text, username, password):
     resp = requests.post(
         'http://{}/message'.format(HOST),
         json.dumps({'text': text, 'username': username}))
@@ -31,9 +32,20 @@ def read_messages():
         print 'ERROR'
 
 
-if sys.argv[1] == 'post':
-    post_new_message(sys.argv[2], sys.argv[3])
-elif sys.argv[1] == 'read':
+import argparse
+
+parser = argparse.ArgumentParser('chat client')
+parser.add_argument('command')
+parser.add_argument('--message')
+parser.add_argument('--user')
+parser.add_argument('--password')
+args = parser.parse_args()
+
+
+if args.command == 'post':
+    post_new_message(args.message, username=args.user,
+                     password=args.password)
+elif args.command == 'read':
     read_messages()
 else:
     print 'Errore'
