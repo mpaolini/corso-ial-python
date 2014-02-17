@@ -81,3 +81,22 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'level': 'DEBUG'
+        }
+    },
+    'loggers': {
+        'django': {
+            'level': 'ERROR',
+            'propagate': False,
+            'handlers': ['console']
+        }
+    }
+}
