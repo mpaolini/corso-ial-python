@@ -1,0 +1,16 @@
+<html>
+<head>
+</head>
+<body>
+  <h1>Please signup to dropbox test</h1>
+  <form action="/signup" method="post">{% csrf_token %}
+    <input type="text" name="username">
+    <input type="password" name="password">
+    <input type="submit" value="signup">
+  </form>
+  {% if error %}
+  <p>Error:</p>
+  <p style="color: red;">{{ error }}</p>
+  {% endif %}
+</body>
+</html>

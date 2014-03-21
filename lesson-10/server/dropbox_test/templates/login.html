@@ -1,0 +1,17 @@
+<html>
+<head>
+</head>
+<body>
+  <h1>Please login to dropbox test</h1>
+  <form action="/login" method="post">{% csrf_token %}
+    <input type="text" name="username">
+    <input type="password" name="password">
+    <input type="submit" value="login">
+  </form>
+  <p> not registered? <a href="/signup">register here</a></p>
+  {% if error %}
+  <p>Error:</p>
+  <p style="color: red;">{{ error }}</p>
+  {% endif %}
+</body>
+</html>

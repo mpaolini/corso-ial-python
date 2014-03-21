@@ -1,0 +1,12 @@
+<html>
+<head>
+</head>
+<body>
+  <h1>Welcome to dropbox test</h1>
+  {% if show_connect %}
+  <a href="https://www.dropbox.com/1/oauth2/authorize?redirect_uri=http://localhost:8000/cb&amp;client_id=fsbceopy3kjwrl4&amp;response_type=code">please connect your dropbox account</a>
+  {% else %}
+  <p>you are connected, see your <a href="/file_list">file list</a></p>
+  {% endif %}
+</body>
+</html>
